@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 2
 #include<stdlib.h>
 #include<stdio.h>
 #include<string.h>
@@ -53,7 +54,6 @@ void getcmd(const Block *block, char *output)
 	FILE *cmdf = popen(cmd,"r");
 	if (!cmdf)
 		return;
-	char c;
 	int i = strlen(block->icon);
 	fgets(output+i, CMDLENGTH-i, cmdf);
 	i = strlen(output);
