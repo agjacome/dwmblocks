@@ -1,12 +1,13 @@
 static const Block blocks[] = {
-    /*Icon*/        /*Command*/             /*Update Interval*/     /*Update Signal*/
-    {"", "cat ~/.pacupdate | sed /📦0/d",                                   0,              9},
-    {"🧠", "free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g",       30,             0},
-    {"", "~/bin/statusbar/volume",                                          0,              10},
-    {"☀", "xbacklight | sed 's/\\..*//'",                                   0,              11},
-    {"", "~/bin/statusbar/battery",                                         5,              0},
-    {"🌡", "sensors | awk '/^temp1:/{print $2}'",                            5,              0},
-    {"", "~/bin/statusbar/clock",                                           5,              0},}
+    /* Icon         Command               Interval    Signal */
+    { "\uF001 ",    "dwmblocks-music",    5,          0      },
+    { "\uF0E0 ",    "dwmblocks-email",    5,          0      },
+    { "\uF187 ",    "dwmblocks-updates",  3600,       0      },
+    { "\uE266 ",    "dwmblocks-cpu",      15,         0      },
+    { "\uF1C0 ",    "dwmblocks-memory",   15,         0      },
+    { "\uF028 ",    "dwmblocks-volume",   5,          0      },
+//  { "\uF241 ",    "dwmblocks-battery",  30,         0      },
+    { "\uF017 ",    "dwmblocks-clock",    1,          0      },
 };
 
-static char *delim = " | ";
+static char *delim = " \uF053 ";

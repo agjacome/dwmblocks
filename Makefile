@@ -5,7 +5,18 @@ LDFLAGS = `pkg-config --libs x11`
 SRC = src/dwmblocks.c
 OBJ = ${SRC:.c=.o}
 
-all: dwmblocks
+all: dwmblocks scripts
+
+scripts:
+	mkdir -p bin
+	cp src/music.sh   bin/dwmblocks-music
+	cp src/email.sh   bin/dwmblocks-email
+	cp src/updates.sh bin/dwmblocks-updates
+	cp src/cpu.sh     bin/dwmblocks-cpu
+	cp src/memory.sh  bin/dwmblocks-memory
+	cp src/volume.sh  bin/dwmblocks-volume
+	cp src/battery.sh bin/dwmblocks-battery
+	cp src/clock.sh   bin/dwmblocks-clock
 
 .c.o:
 	${CC} -c ${CFLAGS} $< -o ${<:.c=.o}
@@ -17,14 +28,14 @@ dwmblocks: ${OBJ}
 	${CC} -o bin/$@ ${OBJ} ${LDFLAGS}
 
 clean:
-	rm -f bin/dwmblocks ${OBJ}
+	rm -f bin/dwmblocks* ${OBJ}
 
 install: all
 	mkdir -p /usr/bin
-	cp -f bin/dwmblocks /usr/bin
-	chmod 755 /usr/bin/dwmblocks
+	cp -f bin/dwmblocks* /usr/bin
+	chmod 755 /usr/bin/dwmblocks*
 
 uninstall:
-	rm -f /usr/bin/dwmblocks
+	rm -f /usr/bin/dwmblocks*
 
 .PHONY: all clean install uninstall
