@@ -2,40 +2,31 @@ CC      = cc
 CFLAGS  = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os `pkg-config --cflags x11`
 LDFLAGS = `pkg-config --libs x11`
 
-SRC = src/dwmblocks.c
-OBJ = ${SRC:.c=.o}
-
 all: dwmblocks scripts
-
-scripts:
-	mkdir -p bin
-	cp src/music.sh   bin/dwmblocks-music
-	cp src/email.sh   bin/dwmblocks-email
-	cp src/updates.sh bin/dwmblocks-updates
-	cp src/cpu.sh     bin/dwmblocks-cpu
-	cp src/memory.sh  bin/dwmblocks-memory
-	cp src/volume.sh  bin/dwmblocks-volume
-	cp src/battery.sh bin/dwmblocks-battery
-	cp src/clock.sh   bin/dwmblocks-clock
 
 .c.o:
 	${CC} -c ${CFLAGS} $< -o ${<:.c=.o}
 
-${OBJ}: src/blocks.h
-
-dwmblocks: ${OBJ}
+dwmblocks: src/dwmblocks.o
 	mkdir -p bin
-	${CC} -o bin/$@ ${OBJ} ${LDFLAGS}
+	${CC} -o bin/$@ src/dwmblocks.o ${LDFLAGS}
+
+scripts:
+	mkdir -p bin/scripts/
+	$(foreach script,$(wildcard src/*.sh),cp -f ${script} bin/scripts/${script:src/%.sh=%};)
+	chmod +x bin/scripts/*
 
 clean:
-	rm -f bin/dwmblocks* ${OBJ}
+	rm -rf bin/* src/*.o
 
 install: all
-	mkdir -p /usr/bin
-	cp -f bin/dwmblocks* /usr/bin
-	chmod 755 /usr/bin/dwmblocks*
+	mkdir -p /usr/bin /opt/dwmblocks
+	cp -f bin/dwmblocks /usr/bin
+	cp -f bin/scripts/* /opt/dwmblocks/
+	chmod 755 /usr/bin/dwmblocks /opt/dwmblocks/*
 
 uninstall:
-	rm -f /usr/bin/dwmblocks*
+	rm -f /usr/bin/dwmblocks
+	rm -rf /opt/dwmblocks
 
 .PHONY: all clean install uninstall
