@@ -1,6 +1,4 @@
-CC      = cc
-CFLAGS  = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os `pkg-config --cflags x11`
-LDFLAGS = `pkg-config --libs x11`
+include config.mk
 
 all: dwmblocks scripts
 
@@ -20,13 +18,13 @@ clean:
 	rm -rf bin/* src/*.o
 
 install: all
-	mkdir -p /usr/bin /opt/dwmblocks
-	cp -f bin/dwmblocks /usr/bin
-	cp -f bin/scripts/* /opt/dwmblocks/
-	chmod 755 /usr/bin/dwmblocks /opt/dwmblocks/*
+	mkdir -p ${DESTDIR}${PREFIX}/bin ${DESTDIR}${OPTPREFIX}/dwmblocks
+	cp -f bin/dwmblocks ${DESTDIR}${PREFIX}/bin
+	cp -f bin/scripts/* ${DESTDIR}${OPTPREFIX}/dwmblocks/
+	chmod 755 ${PREFIX}/bin/dwmblocks ${DESTDIR}${OPTPREFIX}/dwmblocks/*
 
 uninstall:
-	rm -f /usr/bin/dwmblocks
-	rm -rf /opt/dwmblocks
+	rm -f ${DESTDIR}${PREFIX}/bin/dwmblocks
+	rm -rf ${DESTDIR}${OPTPREFIX}/dwmblocks
 
 .PHONY: all clean install uninstall
