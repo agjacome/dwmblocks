@@ -1,11 +1,16 @@
 include config.mk
 
+SRC = src/dwmblocks.c
+OBJ = ${SRC:.c=.o}
+
 all: dwmblocks scripts
 
 .c.o:
 	${CC} -c ${CFLAGS} $< -o ${<:.c=.o}
 
-dwmblocks: src/dwmblocks.o
+${OBJ}: src/blocks.h config.mk
+
+dwmblocks: ${OBJ}
 	mkdir -p bin
 	${CC} -o bin/$@ src/dwmblocks.o ${LDFLAGS}
 
