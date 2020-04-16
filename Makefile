@@ -26,7 +26,7 @@ install: all
 	mkdir -p ${DESTDIR}${PREFIX}/bin ${DESTDIR}${OPTPREFIX}/dwmblocks
 	cp -f bin/dwmblocks ${DESTDIR}${PREFIX}/bin
 	cp -f bin/scripts/* ${DESTDIR}${OPTPREFIX}/dwmblocks/
-	chmod 755 ${PREFIX}/bin/dwmblocks ${DESTDIR}${OPTPREFIX}/dwmblocks/*
+	chmod 755 ${DESTDIR}${PREFIX}/bin/dwmblocks ${DESTDIR}${OPTPREFIX}/dwmblocks/*
 
 uninstall:
 	rm -f ${DESTDIR}${PREFIX}/bin/dwmblocks
