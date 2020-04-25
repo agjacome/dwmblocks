@@ -2,6 +2,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-declare -r cpu_usage=$(mpstat | grep 'all' | awk -F' ' '{ gsub(",", ".", $12); print 100 - $12 }')
+declare -r cpu_usage=$(mpstat | grep 'all' | awk -F' ' '{ gsub(",", ".", $NF); print 100 - $NF }')
 
 echo -n "${cpu_usage}%"
