@@ -1,6 +1,6 @@
 # Maintainer: Alberto G. Jácome (agjacome) <agjacome@gmail.com>
 pkgname=dwmblocks-agjacome
-pkgver=r30.5f69f2d
+pkgver=r35.41ce473
 pkgrel=1
 pkgdesc="Customized build of dwmblocks to suit my own needs"
 arch=(x86_64 i686)
