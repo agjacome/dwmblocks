@@ -7,7 +7,7 @@ static const Block blocks[] = {
     { "\uF1C0 ",    "/opt/dwmblocks/memory",   15,         0      },
     { "\uF028 ",    "/opt/dwmblocks/volume",   5,          0      },
     { "\uF80B ",    "/opt/dwmblocks/keyboard", 5,          0      },
-//  { "\uF241 ",    "/opt/dwmblocks/battery",  30,         0      },
+    { "\uF241 ",    "/opt/dwmblocks/battery",  30,         0      },
     { "\uF017 ",    "/opt/dwmblocks/clock",    1,          0      },
 };
 

@@ -6,7 +6,7 @@ declare -r layout_mask=$(xset -q | grep LED | awk '{ print $10 }')
 
 case $layout_mask in
   "00000000" | "00000001")
-      echo -n "UK"
+      echo -n "US"
       ;;
 
   "00001000" | "00001001")
