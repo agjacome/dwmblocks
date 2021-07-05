@@ -2,6 +2,6 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-declare -r battery=$(acpi -b | cut -d',' -f2 | tr -d ' ' | head -1)
+declare -r battery=$(cat /sys/class/power_supply/BAT0/capacity)
 
-echo -n " ${battery}"
+echo -n " ${battery}%"
